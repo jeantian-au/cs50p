@@ -5,7 +5,7 @@ My solutions to [Harvard's CS50P](https://cs50.harvard.edu/python/) problem sets
 ## Progress
 
 - [x] PSet 0 — Functions, Variables (5/5)
-- [ ] PSet 1 — Conditionals
+- [x] PSet 1 — Conditionals (5/5)
 - [ ] PSet 2 — Loops
 - [ ] PSet 3 — Exceptions
 - [ ] PSet 4 — Libraries
@@ -19,8 +19,9 @@ My solutions to [Harvard's CS50P](https://cs50.harvard.edu/python/) problem sets
 
 \`\`\`
 cs50p/
-├── pset0/      # Functions, Variables
-├── pset1/      # Conditionals (in progress)
+├── pset0/      # Functions, Variables (5/5)
+├── pset1/      # Conditionals (5/5)
+├── pset2/      # Loops (In progress)
 └── sandbox/    # Practice scripts
 \`\`\`
 
