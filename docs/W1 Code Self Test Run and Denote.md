@@ -3,7 +3,7 @@
 - boolean
 - if else
 - logic structure
-- .isdigit, .isalnum, .isalpha
+- .isdigit(), .isalnum(), .isalpha()
 - return value to the main
 
 ![[Screenshot 2026-05-29 at 15.26.37.png]]
@@ -45,3 +45,8 @@ fruit example
 
 no-specific value as example
 ![[Screenshot 2026-05-29 at 17.28.40.png]]
+
+### Dictionary & List
+
+![[Screenshot 2026-05-30 at 17.48.15.png]]
+![[Screenshot 2026-05-30 at 17.48.48.png]]
