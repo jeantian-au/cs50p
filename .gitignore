@@ -14,3 +14,4 @@ __pycache__/
 # Secrets
 .env
 *.key
+pset4/bitcoin.py
