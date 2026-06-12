@@ -1,28 +1,35 @@
-# CS50P - Introduction to Programming with Python
+# CS50P — Introduction to Programming with Python
 
-My solutions to [Harvard's CS50P](https://cs50.harvard.edu/python/) problem sets.
+My solutions to [Harvard's CS50P](https://cs50.harvard.edu/python/) problem sets, plus practice scripts and writing along the way.
+
+**Environment:** Python 3.13 · VS Code · pytest · check50/submit50
 
 ## Progress
 
-- [x] PSet 0 — Functions, Variables (5/5)
-- [x] PSet 1 — Conditionals (5/5)
-- [ ] PSet 2 — Loops
-- [ ] PSet 3 — Exceptions
-- [ ] PSet 4 — Libraries
-- [ ] PSet 5 — Unit Tests
-- [ ] PSet 6 — File I/O
-- [ ] PSet 7 — Regular Expressions
+- [x] PSet 0 — Functions, Variables
+- [x] PSet 1 — Conditionals
+- [x] PSet 2 — Loops
+- [x] PSet 3 — Exceptions
+- [x] PSet 4 — Libraries
+- [x] PSet 5 — Unit Tests
+- [x] PSet 6 — File I/O
+- [x] PSet 7 — Regular Expressions
 - [ ] PSet 8 — Object-Oriented Programming
 - [ ] Final Project
 
 ## Structure
 
-\`\`\`
+```
 cs50p/
-├── pset0/      # Functions, Variables (5/5)
-├── pset1/      # Conditionals (5/5)
-├── pset2/      # Loops (In progress)
-└── sandbox/    # Practice scripts
-\`\`\`
+├── pset0/ … pset7/    # Problem sets 0–7 (complete)
+├── sandbox/           # Practice scripts & experiments
+└── writing/           # Blog posts
+```
+
+## Writing
+
+- [Talking to the Other Interpreter: Learning Python as a Translator](writing/talking-to-the-other-interpreter.md)
+
+---
 
 Started: 2026-05-25
