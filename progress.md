@@ -1,0 +1,1 @@
+- 2026/06/15: L9 et cetera lecture + shorts complete
