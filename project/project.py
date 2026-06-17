@@ -1,8 +1,9 @@
 import csv
-import sys
 import re
-from datetime import date
+import sys
+import os
 from datetime import datetime
+from datetime import date
 
 
 class Cat:
@@ -19,12 +20,39 @@ class Cat:
 
     @classmethod
     def get(cls):
+        # 1. Whatever the name is, no restrictions.
         name = input("Name: ").strip().title()
-        breed = input("What breed is this cat? ")
-        gender = input("Gender:(Male/Female/Desexed)").lower()
+
+        # 2. User could put whatever breed the cat is for their cat.
+        breed = input("What breed is this cat? \n")
+
+        # 3. User has to comply with the below three options.
+        gender_dict = {
+            "1": "Male",
+            "2": "Female",
+            "3": "Desexed",
+        }
+        gender_choice = input(
+            "Gender:\n 1.Male \n 2.Female\n 3.Desexed \n Your choice: "
+        ).strip()
+        gender = gender_dict.get(gender_choice)
+
+        # 4. Cat's color are definitely versatile.
         color = input("Color: ").title()
-        weight = float(input("Weight(KG): "))
-        birthday = input("Date of birth (YYYY-MM-DD): ")
+
+        # 5. Need user to give back a valid positive weight.
+        while True:
+            try:
+                weight = float(input("Weight(KG): \n"))
+                if weight <= 0:
+                    raise ValueError
+                break
+            except ValueError:
+                print("Please enter a positive number.")
+
+        # 6. Only accept the date in YYYY-MM-DD format.
+        birthday = input("Date of birth (YYYY-MM-DD): \n")
+
         return cls(name, breed, gender, color, weight, birthday)
 
     @property
@@ -43,7 +71,7 @@ class Cat:
 
     @gender.setter
     def gender(self, gender):
-        if gender not in ["female", "male", "desexed"]:
+        if gender not in ["Male", "Female", "Desexed"]:
             raise ValueError("Invalid gender")
         self._gender = gender
 
@@ -65,54 +93,66 @@ class Cat:
 
     @weight.setter
     def weight(self, weight):
-        if not float(weight) > 0:
+        if not weight > 0:
             raise ValueError("Please insert a positive number for weight.")
         self._weight = weight
 
 
-# The above is the class
+# The above is the Cat class
 # =====================================================================================
 # The below will be main followed by four functions altogether
 
 
 def main():
     default_file()
+    while True:
+        print("=====This is Cats information Center========")
+        print("Please select the below options to proceed:")
+        print("1. Register a new cat")
+        print("2. Lookup an existing cat's information")
+        print("3. Exit the program")
+        user_choice = input("Your choice: ").strip().lower()
 
-    user_choice = (
-        input("Do you want to 1.Register / 2.Read a cat's information? ")
-        .strip()
-        .lower()
-    )
-    if user_choice in ["register", "1"]:
-        print("Please provide the below information.")
-        cat_to_register = Cat.get()
-        add_data(cat_to_register)
+        if user_choice == "1":
+            print("Please provide the below information.")
+            cat_to_register = Cat.get()
+            add_data(cat_to_register)
 
-    elif user_choice in ["read", "2"]:
-        cat_to_read = (
-            input("Please enter the cat name you want to check out:").lower().strip()
-        )
-        result = read_data(cat_to_read)
-        cat_info = Cat(result["name"])
-
-        if result is None:
-            response = input(
-                "This cat has not been registered yet, would you like to register? reply Y/N"
+        elif user_choice == "2":
+            cat_to_read = (
+                input("Please enter the cat name you want to check out:\n")
+                .lower()
+                .strip()
             )
-            if response.strip().upper() == "Y":
-                cat_to_register = Cat.get()
-                add_data(cat_to_register)
-            else:
-                sys.exit("Goodbye!")
-        else:
-            age = calculate_age(result["Birthday"])
-            print(cat_info)
-            print(f"And it's currently {age} years old.")
+            result = read_data(cat_to_read)
 
-    else:
-        sys.exit(
-            "Please choose either '1'(Register) or '2'(Read), you only need to input the number: "
-        )
+            if result is None:
+                response = input(
+                    "This cat has not been registered yet.\nWould you like to register?\nReply Y/N: "
+                )
+                if response.strip().upper() == "Y":
+                    cat_to_register = Cat.get()
+                    add_data(cat_to_register)
+                else:
+                    sys.exit("Goodbye!")
+            else:
+                age = calculate_age(result["Birthday"])
+                cat = Cat(
+                    result["Name"],
+                    result["Breed"],
+                    result["Gender"],
+                    result["Color"],
+                    result["Weight"],
+                    result["Birthday"],
+                )
+                print(cat)
+                print(age)
+
+        elif user_choice == "3":
+            sys.exit("Goodbye!")
+
+        else:
+            print("Invalid input. Please choose 1, 2, 3.")
 
 
 def default_file(filename="cats.csv"):
@@ -148,16 +188,32 @@ def read_data(cat, filename="cats.csv"):
     with open(filename, "r") as file:
         reader = csv.DictReader(file)
         for row in reader:
-            if row["Name"].lower().strip() == cat:
+            if row["Name"].lower().strip() == cat.strip().lower():
                 return row
         return None
 
 
-def calculate_age(dob):
-    born_date = datetime.strptime(dob, "%Y-%m-%d")
-    born = born_date.date()
-    today = datetime.today().date()
-    age = today.year - born.year - ((today.month, today.day) < (born.month, born.day))
+def calculate_age(born_date):
+    dob = datetime.strptime(born_date, "%Y-%m-%d").date()
+    today = date.today()
+    total_months = (today.year - dob.year) * 12 + (today.month - dob.month)
+
+    if today < dob:
+        return "It's not born yet!"
+
+    if today.day < dob.day:
+        total_months -= 1
+
+    if total_months < 12:
+        age = f"It's currently {total_months} months old."
+
+    elif total_months >= 12:
+        years = total_months // 12
+        if years == 1:
+            age = f"It's currently {years} year old."
+        else:
+            age = f"It's currently {years} years old."
+
     return age
 
 
