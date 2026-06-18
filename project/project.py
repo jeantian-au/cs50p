@@ -1,7 +1,6 @@
 import csv
 import re
 import sys
-import os
 from datetime import datetime
 from datetime import date
 
@@ -93,7 +92,8 @@ class Cat:
 
     @weight.setter
     def weight(self, weight):
-        if not weight > 0:
+        weight = float(weight)
+        if weight <= 0:
             raise ValueError("Please insert a positive number for weight.")
         self._weight = weight
 
@@ -193,18 +193,26 @@ def read_data(cat, filename="cats.csv"):
         return None
 
 
-def calculate_age(born_date):
+def calculate_age(born_date, today=None):
     dob = datetime.strptime(born_date, "%Y-%m-%d").date()
-    today = date.today()
-    total_months = (today.year - dob.year) * 12 + (today.month - dob.month)
+    if today is None:
+        today = date.today()
 
     if today < dob:
         return "It's not born yet!"
 
+    total_months = (today.year - dob.year) * 12 + (today.month - dob.month)
+
     if today.day < dob.day:
         total_months -= 1
 
-    if total_months < 12:
+    if total_months == 0:
+        age = "It's newly born and not even 1 month old."
+
+    elif total_months == 1:
+        age = "It's currently 1 month old."
+
+    elif total_months < 12:
         age = f"It's currently {total_months} months old."
 
     elif total_months >= 12:

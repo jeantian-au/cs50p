@@ -3,17 +3,22 @@ from project import read_data
 from project import add_data
 from project import default_file
 from project import Cat
+from datetime import date
 import os
 import csv
 
 
 def test_calculate_age():
-    assert calculate_age("2025-08-06") == "It's currently 10 months old."
-    assert calculate_age("1993-04-21") == "It's currently 33 years old."
-    assert calculate_age("2026-06-17") == "It's currently 0 months old."
-    assert calculate_age("2026-05-17") == "It's currently 1 months old."
-    assert calculate_age("2025-06-17") == "It's currently 1 year old."
-    assert calculate_age("2027-08-06") == "It's not born yet!"
+    fixed_today = date(2026, 6, 18)
+    assert calculate_age("2025-08-06", fixed_today) == "It's currently 10 months old."
+    assert calculate_age("1993-04-21", fixed_today) == "It's currently 33 years old."
+    assert (
+        calculate_age("2026-06-17", fixed_today)
+        == "It's newly born and not even 1 month old."
+    )
+    assert calculate_age("2026-05-17", fixed_today) == "It's currently 1 month old."
+    assert calculate_age("2025-06-17", fixed_today) == "It's currently 1 year old."
+    assert calculate_age("2027-08-06", fixed_today) == "It's not born yet!"
 
 
 def test_read_data():
