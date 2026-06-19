@@ -1,1 +1,3 @@
 - 2026/06/15: L9 et cetera lecture + shorts complete
+- 2026-06-19 (W5 Buffer): DataCamp Intermediate Python 复习(dict/logic/loops 巩固)+ Pandas/NumPy 轻量预习
+- 2026-06-19 (W5 Buffer): DataCamp Intermediate Python 复习 + Pandas/NumPy 预习
