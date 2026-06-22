@@ -1,3 +1,9 @@
-greetings = input("Please Say Something, annything:")
-update_greetings = greetings.replace(" ", "...")
-print(update_greetings) 
+def main():
+
+    user_input = input("Please say something, anything:")
+    greetings = user_input.replace(" ", "...")
+    print(greetings)
+
+
+if __name__ == "__main__":
+    main()

@@ -11,7 +11,7 @@ def main():
         except ValueError:
             continue
 
-    random_number = random.randint(1, 100)
+    random_number = random.randint(1, user_level)
 
     while True:
         try:

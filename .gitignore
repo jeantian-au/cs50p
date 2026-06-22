@@ -15,3 +15,6 @@ __pycache__/
 .env
 *.key
 pset4/bitcoin.py
+*.mp4
+*.png
+*.jpg

@@ -3,7 +3,6 @@ from plates import is_valid
 
 # this demonstrate three kinds of ways of usig pytest.parametrize:
 
-
 # 1:  pytest.param(..., id="...") 内联
 @pytest.mark.parametrize(
     "plates, expected",
@@ -16,7 +15,6 @@ from plates import is_valid
 )
 def test_check_length(plates, expected):
     assert is_valid(plates) is expected
-
 
 @pytest.mark.parametrize(
     "plates, expected",

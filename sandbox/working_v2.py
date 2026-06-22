@@ -1,10 +1,14 @@
 import re
+import sys
 
 
 def main():
     user_input = input("Hours: ")
-    start, finish = convert(user_input)
-    print(f"{h_24(*start)} to {h_24(*finish)}")
+    try:
+        start, finish = convert(user_input)
+        print(f"{h_24(*start)} to {h_24(*finish)}")
+    except ValueError:
+        raise ValueError
 
 
 def convert(s):
@@ -23,7 +27,7 @@ def h_24(hour, minute, half):
     if half == "AM" and hour == 12:
         hour = 0
 
-    elif half == "PM" and hour != 12:
+    if half == "PM" and hour != 12:
         hour = hour + 12
 
     if minute is None:

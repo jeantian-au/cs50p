@@ -14,8 +14,8 @@ My solutions to [Harvard's CS50P](https://cs50.harvard.edu/python/) problem sets
 - [x] PSet 5 — Unit Tests
 - [x] PSet 6 — File I/O
 - [x] PSet 7 — Regular Expressions
-- [ ] PSet 8 — Object-Oriented Programming
-- [ ] Final Project
+- [x] PSet 8 — Object-Oriented Programming
+- [x] Final Project-— Cat Information Center · [Certificate](https://cs50.harvard.edu/certificates/4f63c8f6-f169-467c-a24a-e43aad559ebc)
 
 ## Structure
 
